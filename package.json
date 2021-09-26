@@ -1,0 +1,16 @@
+{
+  "name": "taku.pura",
+  "version": "1.0.0",
+  "description": "",
+  "main": "nut.js",
+  "scripts": {
+    "dev": "nodemon ./index.ts"
+  },
+  "keywords": ["normalize", "string-normalize", "unicode-normalize", "string-parser", "parser"],
+  "author": "Geoxor & Cimok",
+  "license": "MIT",
+  "devDependencies": {
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3"
+  }
+}
