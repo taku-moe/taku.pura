@@ -1,4 +1,3 @@
-console.clear();
 // https://codepoints.net/U+0065
 
 const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
@@ -16,7 +15,7 @@ const lowerCharacters = [
   "ⅉjĳǈǉǋǌɉϳјⅉ⒥ｊ𝐣𝑗𝒋𝒿𝓳𝔧𝕛𝖏𝗃𝗷𝘫𝙟𝚓JĲĳĵǇǈǉǊǋǌǰʲᴶⅉ⒥ⓙⱼ𝐣𝑗𝒋𝒿𝓳𝔧𝕛𝖏𝗃𝗷𝘫𝙟𝚓",
   "𝐤kĸƙκϰкқҟᴋ⒦ⲕ𝐤𝑘𝒌𝓀𝓴𝔨𝕜𝖐𝗄𝗸𝘬𝙠𝚔𝛋𝛞𝜅𝜘𝜿𝝒𝝹𝞌𝞳𝟆",
   "ĺļľĿŀǇǈǉˡᴸḷḻḽₗℓⅬⅼ⒧ⓛＬｌ𝐥𝑙𝒍𝓁𝓵𝔩𝕝𝖑𝗅𝗹𝘭𝙡𝚕",
-  "ᴹᵐḿṁṃₘⅿ⒨ⓜｍ𝐦𝑚𝒎𝓂м𝓶𝔪𝕞𝖒𝗆𝗺𝘮𝙢𝚖",
+  "ᴹᵐḿṁᴍMṃₘⅿ⒨ⓜｍ𝐦𝑚𝒎𝓂м𝓶𝔪𝕞𝖒𝗆𝗺𝘮𝙢𝚖",
   "nŉƞɳηпոռᴨᵰ₥⒩",
   "òóôõöōŏőơǒǫȍȏȯᴼᵒọỏₒ⒪ｏ𝐨𝑜𝒐𝓸𝔬𝕠𝖔𝗈𝗼𝘰𝙤𝚘🄾",
   "Pᴾᵖṕṗₚℙ⒫ⓟｐ𝐩𝑝𝒑𝓅𝓹𝔭𝕡𝖕𝗉𝗽𝘱𝙥𝚙",
@@ -24,7 +23,7 @@ const lowerCharacters = [
   "ŕŗřȑȓʳᵣṙṛṟ⒭ⓡｒ𝐫𝑟𝒓𝓇𝓻𝔯𝕣𝖗𝗋𝗿𝘳𝙧𝚛",
   "Sśŝşšșˢṡṣ⒮ⓢｓ𝐬𝑠𝒔𝓈𝓼𝔰𝕤𝖘𝗌𝘀𝘴𝙨𝚜",
   "ţťțᵗṫṭṯṱẗ⒯ⓣｔ𝐭𝑡𝒕𝓉𝓽𝔱𝕥𝖙𝗍𝘁𝘵𝙩𝚝",
-  "ùúûüũūŭůűųưǔȕＵȗᵁᵘᵤṳ\uFF35ṵṷụủ℆𝓾⒰ⓤｕ𝐮𝑢𝒖𝓊𝓾𝔲𝕦𝖚𝗎𝘂𝘶𝙪𝚞𝐮uʋυцսᴜᵫᵾ℆ꜷꞟꭎꭒ",
+  "ùúûᴜüũūŭUůűųưǔȕＵȗᵁᵘᵤṳ\uFF35ṵṷụủ℆𝓾⒰ⓤｕ𝐮𝑢𝒖𝓊𝓾𝔲𝕦𝖚𝗎𝘂𝘶𝙪𝚞𝐮uʋυцսᴜᵫᵾ℆ꜷꞟꭎꭒ",
   "ᵛᵥṽṿⱽ𝐯𝑣𝒗𝓋𝓿𝔳𝕧𝖛𝗏𝘃𝘷𝙫𝚟",
   "ŵʷᵂẁ⒲ⓦｗ𝐰𝑤𝒘𝓌𝔀𝔴𝕨𝖜𝗐𝘄𝘸𝙬𝚠",
   "ˣẋẍₓ⒳ⓧｘ𝐱𝑥𝒙𝓍𝔁𝔵𝕩𝖝𝗑𝘅𝘹𝙭𝚡🅇",
@@ -42,10 +41,10 @@ export default function normalize(string: string): string {
   string = string.replace(/[\uD83C]/g, "");
 
   // Remove weird spaces
-  string = string.replace(/[\u180E\u200B\u200C\u200D\u2060\uFEFF]/g, " ");
+  string = string.replace(/[\u180E\u200C\u200D\u2060\uFEFF]/g, " ");
   
   // Remove invisible characters 
-  string = string.replace(/[\u200E\uD914\uDA24\uDF49]/g, "");
+  string = string.replace(/[\u200E\u200B]/g, "");
 
   // Replace odd characters
   for (const i in alphabet) {
@@ -56,23 +55,10 @@ export default function normalize(string: string): string {
       const regex = new RegExp(character, 'g');
       string = string.replace(regex, alphabet[i]);
     }
- 
-    console.log(string);
   }
 
   // Remove High Surrogates
-  string = string.replace(/\ud835/g, "");
+  string = string.replace(/[\ud835\u200f]/g, "");
 
   return string;
 }
-
-// const sentenceExpected = "cum cum cum cum cum cum cum cum cum cum cum cum cum cum cum";
-// const sentence = "yes u can say co‍ck and pe‍nis";
-
-const sentence = "𝔠𝔲𝔪 𝖈𝖚𝖒 𝓬Ｕм C‏‏‎UM 𝓬𝓾𝓶 𝒸𝓊𝓂 C​u​m 𝕔𝕦𝕞 ｃｕｍ ᴄᴜᴍ ɔnɯ 🄲🅄🄼";
-console.time('time');
-
-const normalized = normalize(sentence);
-console.timeEnd('time');
-console.log(normalized);
-console.log(normalized.charCodeAt(0));
