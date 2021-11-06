@@ -1,11 +1,17 @@
 {
-  "name": "taku.pura",
-  "version": "1.0.2",
-  "description": "",
-  "main": "nut.js",
+  "name": "@taku.moe/pura",
+  "version": "1.0.3",
+  "description": "A string normaliser",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "dev": "nodemon ./index.ts",
-    "test": "ts-mocha -p ./tsconfig.json ./tests/index.test.ts"
+    "test": "ts-mocha -p ./tsconfig.json ./tests/index.test.ts",
+    "compile": "tsc",
+    "publish": "npm publish --access public",
+    "bump": "npm version patch --force",
+    "release": "npm run compile && npm run publish",
+    "auto": "npm run bump && npm run release"
   },
   "keywords": [
     "normalize",
