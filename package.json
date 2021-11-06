@@ -1,6 +1,6 @@
 {
   "name": "@taku.moe/pura",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A string normaliser",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
