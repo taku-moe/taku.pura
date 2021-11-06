@@ -1,6 +1,33 @@
 // https://codepoints.net/U+0065
 
-const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+const alphabet = [
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f",
+  "g",
+  "h",
+  "i",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "o",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "u",
+  "v",
+  "w",
+  "x",
+  "y",
+  "z",
+];
 
 const lowerCharacters = [
   "a⍺aæɑαаӕ⍶⍺⒜ꜳꜵꜷꜹꜻꜽａ𝐚𝑎𝒂𝒶𝓪𝔞𝕒𝖆𝖺𝗮𝘢𝙖𝚊𝛂𝛼𝜶𝝰𝞪",
@@ -36,23 +63,21 @@ const lowerCharacters = [
  * @author Geoxor & Cimok
  */
 export default function normalize(string: string): string {
-  
   // Remove weird characters
   string = string.replace(/[\uD83C]/g, "");
 
   // Remove weird spaces
   string = string.replace(/[\u180E\u200C\u200D\u2060\uFEFF]/g, " ");
-  
-  // Remove invisible characters 
-  string = string.replace(/[\u200E\u200B]/g, "");
+
+  // Remove invisible characters
+  string = string.replace(/[\u200E\u200B\u061C]/g, "");
 
   // Replace odd characters
   for (const i in alphabet) {
-
     const characterSet = lowerCharacters[i];
 
     for (const character of characterSet) {
-      const regex = new RegExp(character, 'g');
+      const regex = new RegExp(character, "g");
       string = string.replace(regex, alphabet[i]);
     }
   }
