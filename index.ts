@@ -1,5 +1,7 @@
 // https://codepoints.net/U+0065
 
+import zeroWidth from "./zero_width.json";
+
 const alphabet = [
   "a",
   "b",
@@ -71,6 +73,11 @@ export default function normalize(string: string): string {
 
   // Remove invisible characters
   string = string.replace(/[\u200E\u200B\u061C]/g, "");
+
+  // Remove zero widht and any spaces generated from that
+  for (const char of zeroWidth) {
+    string = string.replace(new RegExp(char, "g"), "").replace(/\s/g, "");
+  }
 
   // Replace odd characters
   for (const i in alphabet) {
